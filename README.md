@@ -113,6 +113,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [25.2. Median of an array](#252-median-of-an-array)
     - [25.3. Reverse a number](#253-reverse-a-number)
     - [25.4. Generating Random Numbers in Range](#254-generating-random-numbers-in-range)
+    - [25.5. Maximum Sum LCM](#255-maximum-sum-lcm)
 
 ## 1. Array
 
@@ -2765,12 +2766,36 @@ uniform_real_distribution<double> uni{0, 1};
 // cout << uni(rng) << "\n";
 ```
 
-<details>
+
+
+### 25.5. Maximum Sum LCM
+```cpp
+// Given a positive number n. You need to write a program to find the maximum sum of distinct numbers such that the LCM of all these numbers is equal to n.
+ class Solution {
+  public:
+   long long int maxSumLCM(int n) 
+    {
+        long long int ans = 0;
+        
+        for(int i=1; i*i<=n; i++)
+		if(n%i == 0)
+		{
+			if(n/i == i)
+				ans += i;
+			else
+				ans += i + (n/i);
+		}
+        
+        return ans;
+       // code here
+    }
+ ```
+ 
+ <details>
 <summary>Template</summary>
 
 ```cpp
 ```
-
 </details>
 
 <br>[⬆ Back to top](#dsa-code-snippets)
