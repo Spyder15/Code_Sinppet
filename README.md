@@ -57,6 +57,7 @@ It contains curated list of all data stuctures and algorithm used in various com
   - [10. Dynamic Programming](#10-dynamic-programming)
     - [10.1. Longest Increasing Subsequence - LIS](#101-longest-increasing-subsequence---lis)
     - [10.2. Partial Sum](#102-partial-sum)
+    - [10.3. Longest Bitonic subsequence](#103-longest-bitonic-subsequence)
   - [11. Graphs](#11-graphs)
     - [11.1. Can We Go From Source To Destination](#111-can-we-go-from-source-to-destination)
     - [11.2. Print Euler Tour](#112-print-euler-tour)
@@ -1265,6 +1266,41 @@ partial_sum(begin(A), end(A), begin(pre) + 1);
 // Or simply
 for (int i = 0; i < N; ++i) pre[i + 1] = pre[i] + A[i];
 
+```
+
+### 10.3. Longest Bitonic subsequence
+```cpp
+// Given an array of positive integers. Find the maximum length of Bitonic subsequence. 
+// A subsequence of array is called Bitonic if it is first strictly increasing, then strictly decreasing.
+
+class Solution{
+	public:
+	int LongestBitonicSequence(vector<int>nums)
+	{
+	    // code here
+	    int n=nums.size();
+	    vector<int> right(n); //longest decreasing order;
+	    vector<int> left(n); //longest increasing order;
+	    
+	    for(int i=0;i<n;i++){
+	        right[i]=1;
+	        for(int j=0;j<i;j++){
+	            if(nums[j]<nums[i] && right[j]+1>right[i]) right[i]=right[j]+1;
+	        }
+	    }
+	    
+	    for(int i=n-1;i>=0;i--){
+	        left[i]=1;
+	        for(int j=i+1;j<n;j++){
+	            if(nums[j]<nums[i] && left[j]+1>left[i]) left[i]=left[j]+1;
+	        }
+	    }
+	    int ans=0;
+	    for(int i=0;i<n;i++){
+	        ans=max(ans,right[i]+left[i]-1);
+	    }
+	    return ans;
+	}
 ```
 
 ## 11. Graphs
