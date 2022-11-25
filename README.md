@@ -115,6 +115,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [25.3. Reverse a number](#253-reverse-a-number)
     - [25.4. Generating Random Numbers in Range](#254-generating-random-numbers-in-range)
     - [25.5. Maximum Sum LCM](#255-maximum-sum-lcm)
+    - [25.6. Shreyansh and his bits](#256-shreyansh-and-his-bits)
 
 ## 1. Array
 
@@ -2826,7 +2827,101 @@ uniform_real_distribution<double> uni{0, 1};
        // code here
     }
  ```
+ ### 25.6. Shreyansh and his bits
+ ```cpp
+// Shreyansh has an integer N. He is really curious about the binary representation of integers. He sees that any given integer has a number of set bits. 
+// Now he wants to find out that how many positive integers, strictly less than N, have the same number of set bits as N.
+// He is a little weak in maths. Help him find the number of integers.
+// Note : Since N takes large values, brute force won't work.
+ //{ Driver Code Starts
+//Initial Template for C++
+
+#include <iostream>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function Template for C++
+
+class Solution{
+
+   long long v[64][64];
+
+public:
+
  
+
+  
+
+long long ncr(int n,int r){
+
+     if(n<r) return 0;
+
+     if(r==0||r==n) return 1;
+
+     if(v[n][r]!=-1){ 
+
+         return v[n][r];
+
+     }
+
+        v[n][r]= ncr(n-1,r)+ ncr(n-1,r-1);
+
+        return v[n][r];
+
+     
+
+ }
+
+    
+
+    long long count(long long x) {
+
+   
+
+        long long ans=0;
+
+        for(int i=0;i<64;i++){
+
+            for(int j=0;j<64;j++){
+
+                v[i][j]=-1;
+
+            }
+
+        }
+
+        int pos=0;
+
+        int one=0;
+
+        while(x>0){
+
+        if(x&1){
+
+            one++;
+
+        ans+=ncr(pos,one);
+
+        }
+
+        pos++;
+
+        x>>=1;
+
+        }
+
+        
+
+     return ans;   
+
+        
+
+    }
+};
+```
+
+
  <details>
 <summary>Template</summary>
 
