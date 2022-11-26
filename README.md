@@ -83,6 +83,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [14.5. Adding numbers in string](#145-adding-numbers-in-string)
     - [14.6. Longest Prefix Suffix](#146-longest-prefix-suffix)
     - [14.7. Euler Phi Function](#147-euler-phi-function)
+    - [14.8. Construct Binary Tree from String with bracket representation](#148-construct-binary-tree-from-string-with-bracket-representation)
   - [15. STL](#15-stl)
     - [15.1. Finding if element inserted in set or not](#151-finding-if-element-inserted-in-set-or-not)
   - [16. Lambda Function](#16-lambda-function)
@@ -2159,7 +2160,48 @@ void solve()
 // Euler Phi of 20 : 8
 // The numbers are : 1 3 7 9 11 13 17 19 
 ```
+### 14.8. Construct Binary Tree from String with bracket representation
+```cpp
+// Construct a binary tree from a string consisting of parenthesis and integers. The whole input represents a binary tree. 
+// It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the roots value and 
+// a pair of parenthesis contains a child binary tree with the same structure. Always start to construct the left child node of the parent first if it exists.
 
+
+class Solution{
+public:
+    // function to construct tree from string
+    Node* solve(string s, int &idx){
+        if(idx>=s.length()){
+            return NULL;
+        }
+        string str="";
+        while(s[idx]>='0' && s[idx]<='9'){
+            str+=s[idx];
+            idx++;
+        }
+        Node* ans=new Node(stoi(str));
+        if(s[idx]=='('){
+            idx++;
+            ans->left=solve(s,idx);
+        }
+        if(s[idx]=='('){
+            idx++;
+            ans->right=solve(s,idx);
+        }
+        idx++;
+        return ans;
+        
+    }
+    
+    Node *treeFromString(string str){
+        // code here
+        int idx=0;
+        return solve(str,idx);
+        
+    }
+    
+   ```
+   
 ## 15. STL
 
 ### 15.1. Finding if element inserted in set or not
