@@ -84,6 +84,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [14.6. Longest Prefix Suffix](#146-longest-prefix-suffix)
     - [14.7. Euler Phi Function](#147-euler-phi-function)
     - [14.8. Construct Binary Tree from String with bracket representation](#148-construct-binary-tree-from-string-with-bracket-representation)
+    - [14.9. Word Pattern](#149-word-pattern)
   - [15. STL](#15-stl)
     - [15.1. Finding if element inserted in set or not](#151-finding-if-element-inserted-in-set-or-not)
   - [16. Lambda Function](#16-lambda-function)
@@ -2202,6 +2203,46 @@ public:
     
    ```
    
+### 14.9. Word Pattern
+```cpp
+Given a pattern and a string s, find if s follows the same pattern.
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+Example 1:
+
+Input: pattern = "abba", s = "dog cat cat dog"
+Output: true
+Example 2:
+Input: pattern = "abba", s = "dog cat cat fish"
+Output: false
+   
+   
+   class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        stringstream ss(s);
+        istream_iterator<string> begin(ss);
+        istream_iterator<string> end;
+	    vector<string> tokens(begin, end);
+        map<char,string> container;
+        if(tokens.size() != pattern.size())
+            return false;
+        for(int i = 0; i < pattern.size(); i++) {
+            if(container.count(pattern[i]) > 0) {
+                if(container.at(pattern[i]) != tokens[i])
+                    return false;
+            }else {
+                for(auto &it : container) {
+                    if(it.second == tokens[i])
+                        return false;
+                }
+                container[pattern[i]] = tokens[i];
+            }
+        }
+        return true;
+    }
+};
+```
+
 ## 15. STL
 
 ### 15.1. Finding if element inserted in set or not
