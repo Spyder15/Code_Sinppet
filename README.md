@@ -1678,7 +1678,6 @@ void solve()
 ```
 
 ### 11.8. Kruskal Algorithm - Minimum Spanning Tree
-
 ```cpp
 class UnionFind {
     vector<int> id;
