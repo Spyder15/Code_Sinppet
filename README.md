@@ -85,6 +85,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [14.7. Euler Phi Function](#147-euler-phi-function)
     - [14.8. Construct Binary Tree from String with bracket representation](#148-construct-binary-tree-from-string-with-bracket-representation)
     - [14.9. Word Pattern](#149-word-pattern)
+    - [14.10. Find the longest string](#1410-find-the-longest-string)
   - [15. STL](#15-stl)
     - [15.1. Finding if element inserted in set or not](#151-finding-if-element-inserted-in-set-or-not)
   - [16. Lambda Function](#16-lambda-function)
@@ -2241,7 +2242,95 @@ public:
     }
 };
 ```
+### 14.10. Find The longest string
+```cpp
+Given an array of strings arr[]. You have to find the longest string which is lexicographically smallest and also all of its prefix strings are already present in the array.
 
+//{ Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function Template for C++
+
+class Solution
+{
+public:
+     string longestString(vector<string> &words)
+
+    {
+
+        // code here
+
+        sort(words.begin(),words.end());
+
+        set<string> s;
+
+        for(const auto& it:words){
+
+            s.insert(it);
+
+        }
+
+        string longest_string;
+
+  for (const auto& it : words) {
+
+    bool prefix_found = true;
+
+    for (int i = 1; i < it.size(); i++) {
+
+      if (!s.count(it.substr(0, i))) {
+
+        prefix_found = false;
+
+        break;
+
+      }
+
+    }
+
+    if (prefix_found && it.size() > longest_string.size()) {
+
+      longest_string = it;
+
+    }
+
+  }
+
+  return longest_string;
+
+    }
+};
+
+//{ Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<string> v(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> v[i];
+        }
+        Solution obj;
+        string w = obj.longestString(v);
+        cout << w << "\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends
+```
+	
 ## 15. STL
 
 ### 15.1. Finding if element inserted in set or not
