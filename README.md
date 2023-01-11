@@ -13,6 +13,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [1.6. Erase Duplicates in Vector](#16-erase-duplicates-in-vector)
     - [1.7. Common Elements in Vector](#17-common-elements-in-vector)
     - [1.8. Convert Vector to Unordered Set](#18-convert-vector-to-unordered-set)
+    - [1.9. Make array elements unique](#19-make-array-elements-unique)
   - [2. Bit Manipulation](#2-bit-manipulation)
     - [2.1. Check if ith bit is on](#21-check-if-ith-bit-is-on)
     - [2.2. Number of set bits in number](#22-number-of-set-bits-in-number)
@@ -247,6 +248,37 @@ unordered_set<string> S(V.begin(), V.end());
 // 705 LeetCode - Design HashSet
 ```
 
+### 1.9. Make array elements unique
+```cpp
+// Given an array arr[ ] of N elements, your task is to find the minimum number of increment operations required to make all the elements of the array unique. ie- no // value in the array should occur more than once. In an operation a value can be incremented by 1 only.
+class Solution {
+  public:
+    long long int minIncrements(vector<int> arr, int N) {
+        long long int  i,j,count=0,max_val=0;
+        map<int,long long >m1;
+       // sort the array 
+       sort(arr.begin(),arr.end());
+       
+       
+        // to calculate the count of operation
+       for(i=0;i<N;i++)
+       {
+           if(max_val<arr[i])
+           {
+               max_val=arr[i]; //update the max_val
+           }
+           else
+           {
+              max_val++;
+               count+=max_val-arr[i]; // operations to increment the curr_element
+               
+           }
+          
+       }
+        return count;
+    }
+};
+```
 
 ## 2. Bit Manipulation
 
