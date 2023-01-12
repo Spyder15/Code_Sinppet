@@ -14,7 +14,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [1.7. Common Elements in Vector](#17-common-elements-in-vector)
     - [1.8. Convert Vector to Unordered Set](#18-convert-vector-to-unordered-set)
     - [1.9. Make array elements unique](#19-make-array-elements-unique)
-    - [1.10. Minimize the sum](#19-make-array-elements-unique)
+    - [1.10. Minimize the sum](#110-minimize-the-sum)
   - [2. Bit Manipulation](#2-bit-manipulation)
     - [2.1. Check if ith bit is on](#21-check-if-ith-bit-is-on)
     - [2.2. Number of set bits in number](#22-number-of-set-bits-in-number)
