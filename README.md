@@ -60,6 +60,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [10.1. Longest Increasing Subsequence - LIS](#101-longest-increasing-subsequence---lis)
     - [10.2. Partial Sum](#102-partial-sum)
     - [10.3. Longest Bitonic subsequence](#103-longest-bitonic-subsequence)
+    - [10.4. Flip String to Monotone Increasing](#104--flip-string-to-monotone-increasing)
   - [11. Graphs](#11-graphs)
     - [11.1. Can We Go From Source To Destination](#111-can-we-go-from-source-to-destination)
     - [11.2. Print Euler Tour](#112-print-euler-tour)
@@ -1393,6 +1394,37 @@ class Solution{
 	    return ans;
 	}
 ```
+
+### 10.4.  Flip String to Monotone Increasing
+```cpp
+// A binary string is monotone increasing if it consists of some number of 0's (possibly none), followed by some number of 1's (also possibly none).
+// You are given a binary string s. You can flip s[i] changing it from 0 to 1 or from 1 to 0.
+// Return the minimum number of flips to make s monotone increasing.
+
+class Solution
+{
+public:
+    int minFlipsMonoIncr(string S)
+    {
+        int count_flip = 0, count_one = 0;
+        for (auto i : S)
+        { 
+ //keep track of all one (we will use count_one in else condition if we need)  
+//if we want flip one into 0
+            if (i == '1')
+                count_one++;
+            else{
+                count_flip++;
+            count_flip = min(count_flip, count_one);
+            }
+        }
+        return count_flip;
+    }
+};
+
+```
+
+
 
 ## 11. Graphs
 
