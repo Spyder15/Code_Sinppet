@@ -16,7 +16,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [1.9. Make array elements unique](#19-make-array-elements-unique)
     - [1.10. Minimize the sum](#110-minimize-the-sum)
     - [1.11. Subarray Sums Divisible by K](#111-subarray-sums-divisible-by-k)
-    - [2. Bit Manipulation](#2-bit-manipulation)
+  - [2. Bit Manipulation](#2-bit-manipulation)
     - [2.1. Check if ith bit is on](#21-check-if-ith-bit-is-on)
     - [2.2. Number of set bits in number](#22-number-of-set-bits-in-number)
     - [2.3. Unset the ith bit in number](#23-unset-the-ith-bit-in-number)
