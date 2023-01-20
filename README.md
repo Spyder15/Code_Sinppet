@@ -75,6 +75,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [11.10. Bipartite Graph](#1110-bipartite-graph)
     - [11.11. Bellman Ford Algorithm](#1111-bellman-ford-algorithm)
     - [11.12. Topological Sort](#1112-topological-sort)
+    - [11.13. Maximum Weight Node](#113-maximum-weight-node)
   - [12. Recursion](#12-recursion)
     - [12.1. Maximum Digit in Number](#121-maximum-digit-in-number)
   - [13. Binary Trees](#13-binary-trees)
@@ -1976,10 +1977,6 @@ vector<int> bellmanFord(vector<vector<int>>& edges, int V, int src) {
 ```
 
 ### 11.12. Topological Sort
-
-<details>
-<summary>Code</summary>
-
 ```cpp
 vector<int> topologicalSort(int k, vector<vector<int>> &A) {
     vector<int> deg(k, 0), order; // Degree
@@ -2015,10 +2012,46 @@ vector<int> topologicalSort(int k, vector<vector<int>> &A) {
     return order;
 }
 ```
+### 11.3. Maximum Weight Node
+```cpp
+// Given a maze with N cells. Each cell may have multiple entry points but not more than one exit (i.e entry/exit points are unidirectional doors like valves).
+// You are given an array Edge[] of N integers, where Edge[i] contains the cell index that can be reached from cell i in one step. Edge[i] is -1 if the ith cell     // doesn't have an exit.  The task is to find the cell with maximum weight (The weight of a cell is the sum of cell indexes of all cells pointing to that cell). If // there are multiple cells with the maximum weight return the cell with highest index.
+// Note: The cells are indexed with an integer value from 0 to N-1. If there is no cell pointing to the ith cell then the weight of the i'th cell is zero.
+// Example 1:
+// Input:
+// N = 4
+// Edge[] = {2, 0, -1, 2}
+// Output: 2
+class Solution
+{
+  public:
+  int maxWeightCell(int N, vector<int> edge)
+  {
+      // code here'
+      vector<int>inDig(N,0);
+      for(int i=0;i<N;i++){
+          if(edge[i]==-1){
+              continue;
+          }
+           inDig[edge[i]]+=i;
+     }
+      int maxi=INT_MIN;
+      int ans=0;
+      for(int i=0;i<N;i++){
+          if(maxi<inDig[i]){
+              maxi=inDig[i];
+              ans=i;
+          }
+          if(maxi==inDig[i]){
+              ans=i;
+          }
+          
+      }
+      return ans; 
+  }
+};
+``` 
 
-</details>
-
-<br>[⬆ Back to top](#dsa-code-snippets)
 
 ## 12. Recursion
 
