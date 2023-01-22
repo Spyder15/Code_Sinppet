@@ -16,6 +16,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [1.9. Make array elements unique](#19-make-array-elements-unique)
     - [1.10. Minimize the sum](#110-minimize-the-sum)
     - [1.11. Subarray Sums Divisible by K](#111-subarray-sums-divisible-by-k)
+    - [1.12. GCD Array](#112-gcd-array)
   - [2. Bit Manipulation](#2-bit-manipulation)
     - [2.1. Check if ith bit is on](#21-check-if-ith-bit-is-on)
     - [2.2. Number of set bits in number](#22-number-of-set-bits-in-number)
@@ -387,6 +388,42 @@ public:
     }
 };
 
+```
+
+### 1.12. GCD Array
+```cpp
+class Solution {
+  public:
+        int solve(int n, int k, vector<int> &arr) {
+        vector<int> v;
+        int sum = 0, ans = 0;
+        
+        for(int i = 0; i < n; i++) {
+            sum += arr[i];
+        }
+        for(int i = 1; i * i <= sum; i++) {
+            if(sum%i == 0) {
+                v.push_back(i);
+                if(i != sum/i) v.push_back(sum/i);
+            }
+        }
+        for(int i = v.size() - 1; i >= 0; i--) {
+            
+            int cur = 0, mx = sum/v[i], cnt = 0;
+            for(int j = 0; j < n; j++) {
+                cur += arr[j];
+                if(cur%v[i] == 0) {
+                    cur = 0;
+                    cnt++;
+                }
+            }
+            if(cur != 0 && cur%v[i] == 0) cnt++;
+            
+            if(cnt >= k) ans = max(ans, v[i]);
+        }
+        return ans;
+    }
+};
 ```
 ## 2. Bit Manipulation
 
