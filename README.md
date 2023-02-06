@@ -81,6 +81,7 @@ It contains curated list of all data stuctures and algorithm used in various com
     - [12.1. Maximum Digit in Number](#121-maximum-digit-in-number)
   - [13. Binary Trees](#13-binary-trees)
     - [13.1. Find Path From Root To Target Node](#131-find-path-from-root-to-target-node)
+    - [13.2. BST Downward Traversal](#132-bst-downward-traversal)
   - [14. String](#14-string)
     - [14.1. stringstream Implementation](#141-stringstream-implementation)
     - [14.2. Rabin Karp Algorithm](#142-rabin-karp-algorithm)
@@ -2115,6 +2116,44 @@ bool findPath(TreeNode *node, TreeNode *target, vector<TreeNode*> &path) {
     path.pop_back();
     return false;
 }
+```
+
+### 13.2. BST Downward Traversal
+```cpp
+// Given a Binary Search Tree with unique node values and a target value. You have to find the node whose data is equal to target and return the sum of all 
+// descendant node's data which are vertically below the target node. Initially, you are at the root node.
+// Note: If target node is not present in bst then return -1.
+
+class Solution{
+public:
+   Node* search(Node* root,int target)
+   {
+       if(root==NULL)return NULL;
+       if(root->data ==target)return root;
+       if(root->data>target)search(root->left,target);
+       else search(root->right,target);
+   }
+   void calc(Node* root,int v,long long int &sum)
+   {
+       if(root==NULL)return;
+       if(v==0)sum+=root->data;
+       calc(root->left,v-1,sum);
+       calc(root->right,v+1,sum);
+       
+       
+   }
+   
+    long long int verticallyDownBST(Node *root,int target){
+        Node* tnode=search(root,target);
+        if(tnode==NULL)return -1;
+        long long int sum=0;
+       calc(tnode->left,-1,sum);
+       calc(tnode->right,1,sum);
+       return sum;
+        // Code here
+    }
+};
+
 ```
 
 ## 14. String
